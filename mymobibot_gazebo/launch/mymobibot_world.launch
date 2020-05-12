@@ -27,7 +27,7 @@
 	args="-urdf -model mymobibot -param robot_description"/>
 
   <!-- Run RVIZ-->
-  <node name="$(anon rviz)" pkg="rviz" type="rviz" args="$(find mymobibot_gazebo)/mymobibot.rviz" output="screen"/>
+  <!--node name="$(anon rviz)" pkg="rviz" type="rviz" args="$(find mymobibot_gazebo)/mymobibot.rviz" output="screen"/-->
 
   <!-- ros_control mymobibot launch file -->
   <include file="$(find mymobibot_control)/launch/mymobibot_control.launch" />
