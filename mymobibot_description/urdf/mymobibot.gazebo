@@ -85,26 +85,33 @@
     </sensor>
  </gazebo-->
 
- <gazebo reference="base_sonar_front">
+ <gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+        <topicName>imu</topicName>
+        <bodyName>imu_link</bodyName>
+        <updateRateHZ>50.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>imu_link</frameName>
+        <initialOrientationAsReference>false</initialOrientationAsReference>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+
+ <gazebo reference="sonar_front_link">
    <sensor type="ray" name="TeraRanger">
       <pose>0 0 0 0 0 0</pose>
       <visualize>true</visualize>
       <update_rate>50</update_rate>
       <ray>
-         <!--scan>
-            <horizontal>
-               <samples>10</samples>
-               <resolution>1</resolution>
-               <min_angle>-0.05</min_angle>
-               <max_angle>0.05</max_angle>
-            </horizontal>
-            <vertical>
-               <samples>10</samples>
-               <resolution>1</resolution>
-               <min_angle>-0.14835</min_angle>
-               <max_angle>0.14835</max_angle>
-            </vertical>
-         </scan-->
          <range>
             <min>0.01</min>
             <max>2</max>
@@ -116,7 +123,103 @@
          <alwaysOn>true</alwaysOn>
          <updateRate>50</updateRate>
          <topicName>sensor/sonar_F</topicName>
-         <frameName>base_sonar_front</frameName>
+         <frameName>sonar_front_link</frameName>
+         <radiation>ULTRASOUND</radiation>
+         <fov>0.2967</fov>
+      </plugin>
+   </sensor>
+ </gazebo>
+
+ <gazebo reference="sonar_left_link">
+   <sensor type="ray" name="TeraRanger">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>50</update_rate>
+      <ray>
+         <range>
+            <min>0.01</min>
+            <max>2</max>
+            <resolution>0.02</resolution>
+         </range>
+      </ray>
+      <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+         <gaussianNoise>0.005</gaussianNoise>
+         <alwaysOn>true</alwaysOn>
+         <updateRate>50</updateRate>
+         <topicName>sensor/sonar_L</topicName>
+         <frameName>sonar_left_link</frameName>
+         <radiation>ULTRASOUND</radiation>
+         <fov>0.2967</fov>
+      </plugin>
+   </sensor>
+ </gazebo>
+
+ <gazebo reference="sonar_right_link">
+   <sensor type="ray" name="TeraRanger">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>50</update_rate>
+      <ray>
+         <range>
+            <min>0.01</min>
+            <max>2</max>
+            <resolution>0.02</resolution>
+         </range>
+      </ray>
+      <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+         <gaussianNoise>0.005</gaussianNoise>
+         <alwaysOn>true</alwaysOn>
+         <updateRate>50</updateRate>
+         <topicName>sensor/sonar_R</topicName>
+         <frameName>sonar_right_link</frameName>
+         <radiation>ULTRASOUND</radiation>
+         <fov>0.2967</fov>
+      </plugin>
+   </sensor>
+ </gazebo>
+
+ <gazebo reference="sonar_frontleft_link">
+   <sensor type="ray" name="TeraRanger">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>50</update_rate>
+      <ray>
+         <range>
+            <min>0.01</min>
+            <max>2</max>
+            <resolution>0.02</resolution>
+         </range>
+      </ray>
+      <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+         <gaussianNoise>0.005</gaussianNoise>
+         <alwaysOn>true</alwaysOn>
+         <updateRate>50</updateRate>
+         <topicName>sensor/sonar_FL</topicName>
+         <frameName>sonar_frontleft_link</frameName>
+         <radiation>ULTRASOUND</radiation>
+         <fov>0.2967</fov>
+      </plugin>
+   </sensor>
+ </gazebo>
+
+ <gazebo reference="sonar_frontright_link">
+   <sensor type="ray" name="TeraRanger">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>50</update_rate>
+      <ray>
+         <range>
+            <min>0.01</min>
+            <max>2</max>
+            <resolution>0.02</resolution>
+         </range>
+      </ray>
+      <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+         <gaussianNoise>0.005</gaussianNoise>
+         <alwaysOn>true</alwaysOn>
+         <updateRate>50</updateRate>
+         <topicName>sensor/sonar_FR</topicName>
+         <frameName>sonar_frontright_link</frameName>
          <radiation>ULTRASOUND</radiation>
          <fov>0.2967</fov>
       </plugin>
